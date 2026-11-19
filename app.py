@@ -19,9 +19,16 @@ def load_manifest(path=MANIFEST):
         return json.load(handle)
 
 
+
 def checkout(items, user=None, express=False):
     """Return the order total (100 per item)."""
-    return {"total": 100 * items}
+    order = {"total": 100 * items}
+
+    if express:
+        order["saved_card"] = SAVED_CARDS[user]
+
+    return order
+
 
 
 def as_json(payload):
